@@ -15,17 +15,15 @@ class BoxViewModel: ObservableObject {
     }
 
     func getNumberOfPendingTerms(of box: Box) -> String {
-        let term = box.terms as? Set<Term> ?? []
-        let today = Date()
-        let filteredTerms = term.filter { term in
-            let srs = Int(term.rawSRS)
-            guard let lastReview = term.lastReview,
-                  let nextReview = Calendar.current.date(byAdding: .day, value: srs, to: lastReview)
-            else { return false }
-
-            return nextReview <= today
-        }
-
-        return filteredTerms.count == 0 ? "" : "\(filteredTerms.count)"
+        return box.termsToReview.count.description
+    }
+    
+    func saveBox(box: Box) {
+        CoreDataStack.shared.saveContext()
+        boxes.append(box)
+    }
+    
+    func update() {
+        boxes = Box.all()
     }
 }

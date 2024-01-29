@@ -12,8 +12,10 @@ struct SwipperCard<FrontContent: View, BackContent: View>: View {
 
     @ViewBuilder var frontContent: () -> FrontContent
     @ViewBuilder var backContent: () -> BackContent
+    
+    let handler: () -> Void
 
-    var theme: reTheme = .lavender
+    var theme: reTheme
     
     // Tap States
     @State private var isFlipped: Bool = false
@@ -100,19 +102,10 @@ struct SwipperCard<FrontContent: View, BackContent: View>: View {
     
     private func dragDidEnd(_ gesture: DragGesture.Value) {
         withAnimation(.linear(duration: duration)) {
+            handler()
             dragAmout = .zero
             cardAngle = .zero
             direction = .none
-        }
-    }
-}
-
-struct SwipperCard_Previews: PreviewProvider {
-    static var previews: some View {
-        SwipperCard(direction: .constant(.none)) {
-            Text("Term")
-        } backContent: {
-            Text("Meaning")
         }
     }
 }

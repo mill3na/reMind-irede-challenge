@@ -11,3 +11,5 @@ struct SwipeReview {
     var termsToReview: [Term]
     var termsReviewed: [Term] = []
 }
+
+extension SwipeReview: Hashable { }

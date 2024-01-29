@@ -10,6 +10,10 @@ import SwiftUI
 struct TermEditorView: View {
     @State var term: String
     @State var meaning: String
+    @Environment(\.dismiss) var dismiss
+    @Environment(\.colorScheme) var scheme
+    let box: Box
+    let addTermHandler: ((Term) -> Void)
     
     var body: some View {
         NavigationStack {
@@ -20,10 +24,12 @@ struct TermEditorView: View {
                 Spacer()
 
                 Button(action: {
-                    print("save and add new")
+                    addTerm(addOther: true)
+                    
                 }, label: {
                     Text("Save and Add New")
                         .frame(maxWidth: .infinity)
+                        .foregroundStyle(scheme == .dark ? .black : .white)
                 })
                 .buttonStyle(reButtonStyle())
             }
@@ -34,23 +40,35 @@ struct TermEditorView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel") {
-                        print("Cancel")
+                        dismiss()
                     }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
-                        print("Cancel")
+                        addTerm(addOther: false)
+                       
                     }
                     .fontWeight(.bold)
                 }
             }
         }
     }
-}
-
-struct TermEditorView_Previews: PreviewProvider {
-    static var previews: some View {
-        TermEditorView(term: "", meaning: "")
+    func addTerm(addOther: Bool) {
+        let termModel = Term.newObject()
+        termModel.identifier = UUID()
+        termModel.meaning = meaning.isEmpty ? nil : meaning
+        termModel.value = term.isEmpty ? nil : term
+        termModel.creationDate = Date()
+        termModel.boxID = box
+        termModel.rawTheme = Int16([0, 1, 2].randomElement() ?? 0)
+        addTermHandler(termModel)
+        
+        if !addOther {
+            dismiss()
+        } else {
+            term = ""
+            meaning = ""
+        }
     }
 }

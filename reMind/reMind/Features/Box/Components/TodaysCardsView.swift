@@ -7,34 +7,33 @@
 
 import SwiftUI
 
+struct TodaysCardInfo {
+    var cardsToReview: Int
+    var theme: reTheme
+}
+
 struct TodaysCardsView: View {
-    @State var numberOfPendingCards: Int
-    @State var theme: reTheme
+    let info: TodaysCardInfo
+    let handler: () -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Today's Cards")
                 .font(.title)
                 .fontWeight(.semibold)
-            Text("\(numberOfPendingCards) cards to review")
+            Text("\(info.cardsToReview) cards to review")
                 .font(.title3)
 
             Button(action: {
-                print("swippe time!")
+                handler()
             }, label: {
                 Text("Start Swipping")
                     .frame(maxWidth: .infinity)
             })
-            .buttonStyle(reColorButtonStyle(.mauve))
+            .buttonStyle(reColorButtonStyle(info.theme))
             .padding(.top, 10)
         }
         .padding(.vertical, 16)
     }
-}
 
-struct TodaysCardsView_Previews: PreviewProvider {
-    static var previews: some View {
-        TodaysCardsView(numberOfPendingCards: 10, theme: .mauve)
-            .padding()
-    }
 }

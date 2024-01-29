@@ -19,9 +19,11 @@ extension Box {
         return NSFetchRequest<Box>(entityName: "Box")
     }
 
-    @NSManaged public var identifier: UUID?
-    @NSManaged public var name: String?
+    @NSManaged public var identifier: UUID
+    @NSManaged public var name: String
     @NSManaged public var rawTheme: Int16
+    @NSManaged public var keywords: String?
+    @NSManaged public var boxDescription: String?
     @NSManaged public var terms: NSSet?
 
 }
@@ -53,12 +55,30 @@ extension Box: CoreDataModel {
     }
 
     var numberOfTerms: Int { self.terms?.count ?? 0 }
+    
+    var termsToReview: [Term] {
+        get {
+            let terms = self.terms as? Set<Term> ?? []
+            return terms
+                .filter{ $0.lastReview == nil}
+        }
+        
+        set(newTerms) {
+            return
+        }
+    }
+    
+    var reviewedTerms: [Term] {
+        let terms = self.terms as? Set<Term> ?? []
+        return terms
+            .filter{ $0.lastReview != nil}
+    }
 }
 
 enum reTheme: Int {
-    case aquamarine = 0
-    case mauve
-    case lavender
+    case aquamarine = 2
+    case mauve = 0
+    case lavender = 1
 
     var name: String {
         switch self {

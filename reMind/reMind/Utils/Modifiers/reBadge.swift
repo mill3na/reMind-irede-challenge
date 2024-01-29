@@ -10,7 +10,7 @@ import SwiftUI
 struct reBadgeModifier: ViewModifier {
     @Environment(\.colorScheme) var colorScheme
 
-    @State var value: String
+    @Binding var value: [Term]
 
     private var textColor: Color {
         colorScheme == .light ? Palette.reWhite.render : Palette.reBlack.render
@@ -27,7 +27,7 @@ struct reBadgeModifier: ViewModifier {
             content
                 .overlay {
                     GeometryReader { reader in
-                        Text(value)
+                        Text(value.count.description)
                             .padding(6)
                             .font(.body)
                             .foregroundColor(textColor)
@@ -47,7 +47,7 @@ struct reBadgeModifier: ViewModifier {
 }
 
 extension View {
-    func reBadge(_ value: String) -> some View {
+    func reBadge(_ value: Binding<[Term]>) -> some View {
         modifier(reBadgeModifier(value: value))
     }
 }

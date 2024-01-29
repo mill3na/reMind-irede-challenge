@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A678C422B66E45800E736C7 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A678C412B66E45800E736C7 /* ReportView.swift */; };
 		FE1640962AC2126E0073317C /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1640922AC2126E0073317C /* Box.swift */; };
 		FE1640992AC2126E0073317C /* Term.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1640952AC2126E0073317C /* Term.swift */; };
 		FE3ABEC72A4F59D800432ED4 /* reRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3ABEC62A4F59D800432ED4 /* reRadioButton.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6A678C412B66E45800E736C7 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		FE1640922AC2126E0073317C /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = SOURCE_ROOT; };
 		FE1640952AC2126E0073317C /* Term.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Term.swift; sourceTree = SOURCE_ROOT; };
 		FE3ABEC62A4F59D800432ED4 /* reRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reRadioButton.swift; sourceTree = "<group>"; };
@@ -88,6 +90,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6A678C402B66E44500E736C7 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				6A678C412B66E45800E736C7 /* ReportView.swift */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
 		FE3ABECB2A4F5E7F00432ED4 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,6 +268,7 @@
 		FE6A9FAE2A461FF200A84FC9 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				6A678C402B66E44500E736C7 /* Report */,
 				FE3ABEDD2A53521600432ED4 /* Swipper */,
 				FE3ABED32A5326B500432ED4 /* Box */,
 				FE3ABECE2A4F654800432ED4 /* TermEditor */,
@@ -401,6 +412,7 @@
 				FE3ABECD2A4F5E8F00432ED4 /* reRadioButtonGroup.swift in Sources */,
 				FEE2DC732A4B5CE4006A535D /* Palette.swift in Sources */,
 				FE3ABEDA2A532A4D00432ED4 /* reColorButtonStyle.swift in Sources */,
+				6A678C422B66E45800E736C7 /* ReportView.swift in Sources */,
 				FE3ABED22A4F680C00432ED4 /* reButtonStyle.swift in Sources */,
 				FE5B807A2A4CB0DA00711F80 /* reBadge.swift in Sources */,
 				FE3ABEC72A4F59D800432ED4 /* reRadioButton.swift in Sources */,

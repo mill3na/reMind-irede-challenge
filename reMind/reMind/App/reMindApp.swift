@@ -9,10 +9,14 @@ import SwiftUI
 
 @main
 struct reMindApp: App {
+    
+    @State var paths = NavigationPath()
+    
     var body: some Scene {
+        
         WindowGroup {
-            NavigationStack {
-                BoxesView(viewModel: BoxViewModel())
+            NavigationStack(path: $paths) {
+                BoxesView(viewModel: BoxViewModel(), paths: $paths)
             }
         }
     }
